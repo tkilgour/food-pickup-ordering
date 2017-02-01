@@ -9,3 +9,7 @@ CREATE TABLE users (
   phone VARCHAR(50) NOT NULL
 );
 
+CREATE TABLE restaurant (
+  id INT PRIMARY KEY NOT NULL,
+  name VARCHAR(50) NOT NULL
+);
