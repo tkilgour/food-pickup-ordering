@@ -19,103 +19,23 @@
   <div class="container">
     <div class="row">
 
-      <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item">
-        <div class="add-subtract-items">
-          <p>Add to Cart: </p>
-          <button class="add-item" type="button" class="btn btn-default btn-md">+</button>
-          <button class="subtract-item" type="button" class="btn btn-default btn-md">–</button>
+      <% locals.products.forEach((product) => {%>
+        <div class="col-lg-4 col-md-6 col-sm-12 item">
+          <div class="add-subtract-items">
+            <p><%= product['price'] %></p>
+            <p>Add to Cart: </p>
+            <button class="add-item" type="button" class="btn btn-default btn-md">+</button>
+            <button class="subtract-item" type="button" class="btn btn-default btn-md">–</button>
+          </div>
+          <a href="#">
+            <img class="img-responsive" src=<%= product['image_url'] %>>
+          </a>
+          <h3>
+            <%= product['name'] %>
+          </h3>
+          <p><%= product['description'] %></p>
         </div>
-        <a href="#">
-          <img class="img-responsive" src="http://placehold.it/600x400/dddddd" alt="">
-        </a>
-        <h3>
-          Chocolate Raspberry Cupcake
-        </h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-      </div>
-
-
-      <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item">
-        <div class="add-subtract-items">
-          <p>Add to Cart: </p>
-          <button class="add-item" type="button" class="btn btn-default btn-md">+</button>
-          <button class="subtract-item" type="button" class="btn btn-default btn-md">–</button>
-        </div>
-        <a href="#">
-          <img class="img-responsive" src="http://placehold.it/600x400/dddddd" alt="">
-        </a>
-        <h3>
-          Chocolate Raspberry Cupcake
-        </h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-      </div>
-
-
-      <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item">
-        <div class="add-subtract-items">
-          <p>Add to Cart: </p>
-          <button class="add-item" type="button" class="btn btn-default btn-md">+</button>
-          <button class="subtract-item" type="button" class="btn btn-default btn-md">–</button>
-        </div>
-        <a href="#">
-          <img class="img-responsive" src="http://placehold.it/600x400/dddddd" alt="">
-        </a>
-        <h3>
-          Chocolate Raspberry Cupcake
-        </h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-      </div>
-
-
-      <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item">
-        <div class="add-subtract-items">
-          <p>Add to Cart: </p>
-          <button class="add-item" type="button" class="btn btn-default btn-md">+</button>
-          <button class="subtract-item" type="button" class="btn btn-default btn-md">–</button>
-        </div>
-        <a href="#">
-          <img class="img-responsive" src="http://placehold.it/600x400/dddddd" alt="">
-        </a>
-        <h3>
-          Chocolate Raspberry Cupcake
-        </h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-      </div>
-
-
-      <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item">
-        <div class="add-subtract-items">
-          <p>Add to Cart: </p>
-          <button class="add-item" type="button" class="btn btn-default btn-md">+</button>
-          <button class="subtract-item" type="button" class="btn btn-default btn-md">–</button>
-        </div>
-        <a href="#">
-          <img class="img-responsive" src="http://placehold.it/600x400/dddddd" alt="">
-        </a>
-        <h3>
-          Chocolate Raspberry Cupcake
-        </h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-      </div>
-
-
-      <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item">
-        <div class="add-subtract-items">
-          <p>Add to Cart: </p>
-          <button class="add-item" type="button" class="btn btn-default btn-md">+</button>
-          <button class="subtract-item" type="button" class="btn btn-default btn-md">–</button>
-        </div>
-        <a href="#">
-          <img class="img-responsive" src="http://placehold.it/600x400/dddddd" alt="">
-        </a>
-        <h3>
-          Chocolate Raspberry Cupcake
-        </h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-      </div>
-
-
-
+      <%}); %>
 
 
 
