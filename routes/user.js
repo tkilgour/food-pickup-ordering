@@ -11,10 +11,12 @@ module.exports = (knex) => {
   router.get('/menu', (req, res) => {
     return knex('products')
       .select()
-        .then((result) => {
+        .then((allProducts) => {
           const locals = {
-            products: result
+            products: allProducts
           };
+
+
           // res.render('menu');
           res.render('menu', locals);
       })
