@@ -20,7 +20,7 @@ if editing number of items
 DELETE '/user/cart/:itemID'
 if delete pressed on item
 
-POST '/user/:orderID'
+POST '/user/order'
 when 'Checkout' is clicked
 
 GET '/user/:orderID'
