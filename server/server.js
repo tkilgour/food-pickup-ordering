@@ -34,6 +34,7 @@ app.use(session({
   saveUninitialized: false
 }))
 app.use(bodyParser.urlencoded({ extended: true }));
+<<<<<<< HEAD
 app.use('/styles', sass({
   src: __dirname + '/../styles',
   dest: __dirname + '/../public/styles',
