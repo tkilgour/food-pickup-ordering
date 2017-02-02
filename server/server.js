@@ -8,7 +8,7 @@ const express     = require('express');
 const bodyParser  = require('body-parser');
 const session     = require('express-session')
 const sass        = require('node-sass-middleware');
-const bcrypt      = require('bcrypt');
+// const bcrypt      = require('bcrypt');
 const app         = express();
 const knexConfig  = require('../knexfile');
 const knex        = require('knex')(knexConfig[ENV]);
@@ -69,13 +69,13 @@ app.post('/login', (req, res) => {
   const email = req.body.email
   const password = req.body.password
   let user_id = ""
-  if (user && (bcrypt.compareSync(password, user.password) || user.password === password)) {
-    user_id = user.id
-    req.session.user_id = user_id
-    res.redirect('/user/menu')
-  } else {
-    res.status(401).redirect('/')
-  }
+  // if (user && (bcrypt.compareSync(password, user.password) || user.password === password)) {
+  //   user_id = user.id
+  //   req.session.user_id = user_id
+  //   res.redirect('/user/menu')
+  // } else {
+  //   res.status(401).redirect('/')
+  // }
 });
 
 app.listen(PORT, () => {
