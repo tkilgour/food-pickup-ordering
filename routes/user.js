@@ -90,8 +90,7 @@ module.exports = (knex) => {
         const newArrWithOrderID = itemArr.map((val) => {
           val['order_id'] = order_id
         })
-        return knex('orders_products')
-          .batchInsert('orders_products', newArrWithOrderID)
+        return knex.batchInsert('orders_products', newArrWithOrderID)
           .then(response => callback(null, "done"))
           .catch(callback)
       },
