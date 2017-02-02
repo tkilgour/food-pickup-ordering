@@ -15,7 +15,7 @@ module.exports = (knex) => {
         const locals = {
           products: allProducts
         };
-        res.render("menu", locals);
+        res.render('menu', locals);
       })
       .catch((err) => {
         console.log("Knex query failed", err)
@@ -102,13 +102,12 @@ module.exports = (knex) => {
         res.redirect('/user/:orderID');
       }
     });
-
-  })
+  });
   // render specific order
   router.get('/:orderID', (req, res) => {
     const orderID = req.params.orderID
     if (!req.session.user_id || !orderID) {
-      res.status(401).
+      res.status(401)
     }
   })
   return router;
