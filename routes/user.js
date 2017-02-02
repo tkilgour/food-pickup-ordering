@@ -1,12 +1,11 @@
 "use strict";
 
-const express = require('express');
-const router  = express.Router();
-const async   = require('async')
+const express        = require('express');
+const router         = express.Router();
+const async          = require('async');
+const methodOverride = require('method-override'); //method overried to allow for put and delete
 
 module.exports = (knex) => {
-
-
   // Andrew - All routes will be prepended with /user ex. /user/menu
   // Andrew - GET request to query db and return all products and render them in menu formn
   router.get('/menu', (req, res) => {
@@ -21,6 +20,22 @@ module.exports = (knex) => {
       .catch((err) => {
         console.log("Knex query failed", err)
       })
+  });
+  // Andrew - Render cart when user clicks on cart icon
+  router.get('/cart', (req, res) => {
+    res.render('cart')
+  })
+  // Andrew - Post for when user add item to cart
+  router.post('/cart', (req, res) => {
+
+  })
+  // Andrew - Update item quantity in cart
+  router.put('/cart/:itemID', (req, res) => {
+
+  });
+  // Andrew - Delete item from cart
+  router.delete('/cart/:itemID', (req, res) => {
+
   });
   // Andrew - Post request on order submission. Knex db insertion into orders table and
   // products_menu table.
@@ -43,23 +58,23 @@ module.exports = (knex) => {
 
     const itemArr = [
       {
-        item_id: itemID1,
-        quantity: itemQuantity1
+        item_id  : itemID1,
+        quantity : itemQuantity1
       }, {
-        itemID2:itemQuantity2,
-        quantity: itemQuantity2
+        itemID2  : itemQuantity2,
+        quantity : itemQuantity2
       }, {
-        itemID3:itemQuantity3,
-        quantity: itemQuantity3
+        itemID3  : itemQuantity3,
+        quantity : itemQuantity3
       }, {
-        itemID3:itemQuantity4,
-        quantity: itemQuantity4
+        itemID3  : itemQuantity4,
+        quantity : itemQuantity4
       }, {
-        itemID3:itemQuantity5,
-        quantity: itemQuantity5
+        itemID3  : itemQuantity5,
+        quantity : itemQuantity5
       }, {
-        itemID3:itemQuantity6,
-        quantity: itemQuantity6
+        itemID3  : itemQuantity6,
+        quantity : itemQuantity6
       }
     ];
     async.waterfall([
@@ -72,10 +87,11 @@ module.exports = (knex) => {
       },
       (data, callback) => {
         const order_id = data[0]
-        const newArr = itemArr.map((val) => {
+        const newArrWithOrderID = itemArr.map((val) => {
           val['order_id'] = order_id
         })
-        return knex.batchInsert('orders_products', newArr)
+        return knex('orders_products')
+          .batchInsert('orders_products', newArrWithOrderID)
           .then(response => callback(null, "done"))
           .catch(callback)
       },
@@ -84,12 +100,17 @@ module.exports = (knex) => {
         return console.log(`There was an error during database insertion of order. Error: ${err}`);
       } else {
         console.log('Successfull order submission!');
-        res.redirect("/user/:orderID");
+        res.redirect('/user/:orderID');
       }
     });
 
   })
-
-  router.get('/:orderID')
+  // render specific order
+  router.get('/:orderID', (req, res) => {
+    const orderID = req.params.orderID
+    if (!req.session.user_id || !orderID) {
+      res.status(401).
+    }
+  })
   return router;
 }
