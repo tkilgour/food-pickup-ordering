@@ -9,12 +9,13 @@ module.exports = (knex) => {
   // Andrew - All routes will be prepended with /user ex. /user/menu
   // Andrew - GET request to query db and return all products and render them in menu formn
   router.get('/menu', (req, res) => {
-    return knex('Products')
+    return knex('products')
       .select()
       .then((allProducts) => {
         const locals = {
           products: allProducts
         };
+        // res.render('menu');
         res.render('menu', locals);
       })
       .catch((err) => {
