@@ -11,12 +11,12 @@ module.exports = (knex) => {
   router.get('/menu', (req, res) => {
     return knex('products')
       .select()
-      .then((allProducts) => {
-        const locals = {
-          products: allProducts
-        };
-        // res.render('menu');
-        res.render('menu', locals);
+        .then((result) => {
+          const locals = {
+            products: result
+          };
+          // res.render('menu');
+          res.render('menu', locals);
       })
       .catch((err) => {
         console.log("Knex query failed", err)
