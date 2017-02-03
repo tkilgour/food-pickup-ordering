@@ -103,6 +103,12 @@ module.exports = (knex) => {
   router.delete('/cart/:itemID', (req, res) => {
 
   });
+
+  // Thomas - Temporarily added for testing page statically -–– YOU SHOULD NEVER SEE THIS!
+  router.get('/order_confirmation', (req, res) => {
+    res.render('order_confirmation');
+  });
+
   // render specific order
   router.get('/:orderID', (req, res) => {
     const orderID = req.params.orderID

@@ -3,14 +3,85 @@
   <head>
     <title>Order Confirmation</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles/order_confirmation.css">
+    <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
   <!-- Nav bar -->
   <% include ./partials/_navbar %>
 
-<div class="container md-">
+  <div class="container order">
+    <div class="row">
+      <div class="col-12">
 
-</div>
+        Hooray! Carol's Cupcakes are on their way!
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+        <img class="img-responsive" src="http://placehold.it/120x80">
+      </div>
+
+      <div class="col-lg-7 col-md-6 col-sm-8 col-xs-12">
+        <ul class="item-info">
+          <li class="item-name">Chocolate Cupcake</li>
+          <li class="item-price">$4.99</li>
+        </ul>
+      </div>
+
+      <div class="col-lg-2 col-md-2 col-sm-10 col-xs-2">
+        <ul class="adjust-item">
+          <li>
+            <input type="number" class="form-control text-center" value="1">
+          </li>
+          <li><button class="delete-item" type="button">Remove</button></li>
+        </ul>
+      </div>
+
+      <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2 text-right">
+        <span class="item-subtotal">$14.97</span>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+        <img class="img-responsive" src="http://placehold.it/120x80">
+      </div>
+
+      <div class="col-lg-7 col-md-6 col-sm-8 col-xs-12">
+        <ul class="item-info">
+          <li class="item-name">Chocolate Cupcake</li>
+          <li class="item-price">$4.99</li>
+        </ul>
+      </div>
+
+      <div class="col-lg-2 col-md-2 col-sm-10 col-xs-2">
+        <ul class="adjust-item">
+          <li>
+            <input type="number" class="form-control text-center" value="1">
+          </li>
+          <li><button class="delete-item" type="button">Remove</button></li>
+        </ul>
+      </div>
+
+      <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2 text-right">
+        <span class="item-subtotal">$14.97</span>
+      </div>
+
+    </div>
+
+
+    <div class="row">
+      <div class="col-12 text-right">
+        Total $14.97
+      </div>
+    </div>
+
+
+  </div>
 
 
   <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
