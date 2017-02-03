@@ -1,41 +1,35 @@
-const addToCart = (product) => {
-  // Retrieve the cart object from local storage
-  if (localStorage && localStorage.getItem('cart')) {
-    let cart = JSON.parse(localStorage.getItem('cart'));
-
-    cart.products.push(product);
-
-    localStorage.setItem('cart', JSON.stringify(cart));
+const getCart = () => {
+  if (!localStorage.getItem('cart')) {
+    const cart = {}
+    cart.products = []
+    return cart;
+  } else {
+    return JSON.parse(localStorage.getItem('cart'));
   }
 }
 
-$(() => {
-  $('#shopping-cart').text('')
-  const cart = {}
-
-  cart.products = []
-
+const setCart = (cart) => {
   localStorage.setItem('cart', JSON.stringify(cart));
+}
 
-  let quantity = 0
-  let cartItemCount = 0;
-
-  $('.add-item').on('click', (e) => {
-    let element = $(e.target);
-    let item = element.closest('#item-details');
-    cartItemCount += 1
-    console.log("Button clicked");
-    console.log(cartItemCount);
-    $('#shopping-cart').text(cartItemCount)
-    quantity += 1;
-    const product = {};
-    product.id = item.data('id');
-    product.name = item.data('name');
-    product.price = item.data('price');
-    product.quantity = quantity;
-
-    addToCart(product);
+const addItem = (id, name, price) => {
+  let cart = getCart();
+  let matchingProduct = cart.products.findIndex((product) => {
+    return product.item_id === id;
   })
-});
+  if (matchingProduct === -1) {
+    const product = {};
+    product.item_id = id;
+    product.name = name;
+    product.price = price;
+    product.quantity = 1;
+    cart.products.push(product)
+  } else {
+    cart.products[matchingProduct].quantity += 1;
+  }
+  setCart(cart)
+}
+
+
 
 // let products = JSON.parse(localStorage.cart)
