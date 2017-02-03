@@ -1,12 +1,7 @@
-const cart = {}
-const cart.items = []
-
-localStorage.setItem('cart', JSON.stringify(cart));
-
 const addToCart = (product) => {
   // Retrieve the cart object from local storage
   if (localStorage && localStorage.getItem('cart')) {
-    var cart = JSON.parse(localStorage.getItem('cart'));
+    let cart = JSON.parse(localStorage.getItem('cart'));
 
     cart.products.push(product);
 
@@ -15,16 +10,32 @@ const addToCart = (product) => {
 }
 
 $(() => {
-  let product;
+  $('#shopping-cart').text('')
+  const cart = {}
+
+  cart.products = []
+
+  localStorage.setItem('cart', JSON.stringify(cart));
+
   let quantity = 0
-  $('add-to-cart-button').on('click', (e) => {
+  let cartItemCount = 0;
+
+  $('.add-item').on('click', (e) => {
+    let element = $(e.target);
+    let item = element.closest('#item-details');
+    cartItemCount += 1
+    console.log("Button clicked");
+    console.log(cartItemCount);
+    $('#shopping-cart').text(cartItemCount)
     quantity += 1;
     const product = {};
-    product.id = $('#item-details').attr('data-id');
-    product.name = $('#item-details').attr('data-name');
-    product.price = $('#item-details').attr('data-price');
+    product.id = item.data('id');
+    product.name = item.data('name');
+    product.price = item.data('price');
     product.quantity = quantity;
 
     addToCart(product);
   })
 });
+
+// let products = JSON.parse(localStorage.cart)
