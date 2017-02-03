@@ -15,21 +15,13 @@ module.exports = (knex) => {
         const locals = {
           products: allProducts
         };
-        // res.render('menu');
+        console.log(locals.products);
         res.render('menu', locals);
       })
       .catch((err) => {
         console.log("Knex query failed", err)
       })
   });
-  // Andrew - Render cart when user clicks on cart icon
-  router.get('/cart', (req, res) => {
-    res.render('cart')
-  })
-  // Andrew - Post for when user add item to cart
-  router.post('/cart', (req, res) => {
-
-  })
   // Andrew - Post request on order submission. Knex db insertion into orders table and
   // products_menu table.
   router.post('/order', (req, res) => {
@@ -94,7 +86,15 @@ module.exports = (knex) => {
         res.redirect('/user/:orderID');
       }
     });
-  });
+  });  
+  // Andrew - Render cart when user clicks on cart icon
+  router.get('/cart', (req, res) => {
+    res.render('cart')
+  })
+  // Andrew - Post for when user add item to cart
+  router.post('/cart', (req, res) => {
+
+  })
   // Andrew - Update item quantity in cart
   router.put('/cart/:itemID', (req, res) => {
 
