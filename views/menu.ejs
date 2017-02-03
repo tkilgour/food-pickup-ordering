@@ -20,18 +20,17 @@
     <div class="row">
 
       <% locals.products.forEach((product) => {%>
-        <div id="item-details"class="col-lg-4 col-md-6 col-sm-12 item" data-id="<%= product.id %>" data-name="<%= product.name %>" data-price="<%= product.price %>">
-          <div class="add-subtract-items">
-            <p data-price=≈>
-              <%= product['price'] %>
-            </p>
-            <p>Add to Cart: </p>
-            <button class="add-item" type="button" class="btn btn-default btn-md">+</button>
-            <button class="subtract-item" type="button" class="btn btn-default btn-md">–</button>
+          <div id="item-details"class="col-lg-4 col-md-6 col-sm-12 item" data-id="<%= product.id %>" data-name="<%= product.name %>" data-price="<%= product.price %>">
+          <div class="top-item">
+            <p>$<%= product['price'] %></p>
+            <!-- <p>Add to Cart: </p> -->
+            <button class="add-item" type="button" class="btn btn-default btn-md">Add to Cart</button>
+            <!-- <button class="subtract-item" type="button" class="btn btn-default btn-md">–</button> -->
           </div>
-          <a href="#">
-            <img class="img-responsive" src=<%= product['image_url'] %>>
-          </a>
+          <!-- <a href="#"> -->
+            <!-- <img class="img-responsive" src=<%= product['image_url'] %>> -->
+            <img class="img-responsive" src="http://placehold.it/600x400">
+          <!-- </a> -->
           <h3>
             <%= product['name'] %>
           </h3>

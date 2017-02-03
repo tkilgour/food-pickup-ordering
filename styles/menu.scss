@@ -35,28 +35,29 @@ body {
       margin-bottom: 10px;
     }
 
-    .add-subtract-items {
-      float: right;
+    .top-item {
+      // float: right;
 
       p {
-        margin: 0 5px;
+        // margin: 0 5px;
         display: inline;
       }
 
       .add-item {
-        background-color: white;
-        border: none;
+        background-color: #92C060;
+        border-radius: 5px;
+        // border: none;
         // font-size: x-large;
-        color: #032436;
+        color: white;
         float: right;
       }
-      .subtract-item {
-        background-color: white;
-        border: none;
-        // font-size: x-large;
-        color: #032436;
-        float: right;
-      }
+      // .subtract-item {
+      //   background-color: white;
+      //   border: none;
+      //   // font-size: x-large;
+      //   color: #032436;
+      //   float: right;
+      // }
     }
 
     // h3 {
