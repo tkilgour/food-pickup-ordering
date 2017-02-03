@@ -3,7 +3,7 @@
   <head>
     <title>Menu</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-    <link rel="stylesheet" href="/styles/menu.css">
+    <link rel="stylesheet" href="/styles/cart.css">
     <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
@@ -19,24 +19,7 @@
   <div class="container">
     <div class="row">
 
-      <% locals.products.forEach((product) => {%>
-        <div class="col-lg-4 col-md-6 col-sm-12 item">
-          <div class="top-item">
-            <p>$<%= product['price'] %></p>
-            <!-- <p>Add to Cart: </p> -->
-            <button class="add-item" type="button" class="btn btn-default btn-md">Add to Cart</button>
-            <!-- <button class="subtract-item" type="button" class="btn btn-default btn-md">–</button> -->
-          </div>
-          <!-- <a href="#"> -->
-            <!-- <img class="img-responsive" src=<%= product['image_url'] %>> -->
-            <img class="img-responsive" src="http://placehold.it/600x400">
-          <!-- </a> -->
-          <h3>
-            <%= product['name'] %>
-          </h3>
-          <p><%= product['description'] %></p>
-        </div>
-      <%}); %>
+
 
 
 
