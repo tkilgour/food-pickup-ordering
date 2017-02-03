@@ -88,28 +88,8 @@ module.exports = (knex) => {
   });
   // Andrew - Render cart when user clicks on cart icon
   router.get('/cart', (req, res) => {
-    return knex('cart')
-      .select()
-      .then((cartItems) => {
-        const locals = {cartItems: cartItems}
-        res.render('cart', locals)
-      })
-      .catch((err) => {
-        console.log('Database query to cart failed. Error: ', err);
-      })
+    res.render('cart')
   })
-  // Andrew - Post for when user add item to cart
-  router.post('/cart', (req, res) => {
-
-  });
-  // Andrew - Update item quantity in cart
-  router.put('/cart/:itemID', (req, res) => {
-
-  });
-  // Andrew - Delete item from cart
-  router.delete('/cart/:itemID', (req, res) => {
-
-  });
   // render specific order
   router.get('/:orderID', (req, res) => {
     const orderID = req.params.orderID
