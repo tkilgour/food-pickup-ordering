@@ -3,41 +3,15 @@ body {
 
 }
 
+.order {
+  margin-top: 50px;
+  background-color: #eee;
 
-.item {
-    margin: 25px 0;
 
-    .img-responsive {
-      max-width: 100%;
-      margin-bottom: 10px;
-    }
-
-    .top-item {
-      // float: right;
-
-      p {
-        // margin: 0 5px;
-        display: inline;
-      }
-
-      .add-item {
-        background-color: #92C060;
-        border-radius: 5px;
-        // border: none;
-        // font-size: x-large;
-        color: white;
-        float: right;
-      }
-      // .subtract-item {
-      //   background-color: white;
-      //   border: none;
-      //   // font-size: x-large;
-      //   color: #032436;
-      //   float: right;
-      // }
-    }
-
-    // h3 {
-    //   display: inline-block;
-    // }
+  .item {
+    margin: 15px 0 15px 0;
+    padding: 10px 0;
+    border-bottom: thin solid #ccc;
+  }
 }
+
