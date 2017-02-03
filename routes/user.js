@@ -26,6 +26,7 @@ module.exports = (knex) => {
   // products_menu table.
   router.post('/order', (req, res) => {
     // const userID        = req.session.user_id
+    debugger;
     const userID        = 1;
     const total         = req.body.total_price;
     const itemID1       = req.body.item_1
@@ -39,6 +40,8 @@ module.exports = (knex) => {
     const itemID5       = req.body.item_5
     const itemQuantity5 = req.body.item_5_quantity
 
+    let products = JSON.parse(localStorage.cart)
+    console.log();
     const orderItems = [
       {
         item_id  : itemID1,
