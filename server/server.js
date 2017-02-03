@@ -17,14 +17,8 @@ const knexLogger  = require('knex-logger');
 const handlebars  = require('handlebars');  // used for templating
 // Seperated Routes for each Resource
 const usersRoutes = require('../routes/user');
-// Load the logger first so all (static) HTTP requests are logged to STDOUT
-// 'dev' = Concise output colored by response status for development use.
-//         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
-
-// Log knex SQL queries to STDOUT as well
 app.use(knexLogger(knex));
-
 app.set('view engine', 'ejs');
 // Andrew - Cookie session settings to keep track of userID.
 app.use(session({
