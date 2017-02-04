@@ -5,6 +5,8 @@ const router         = express.Router();
 const async          = require('async');
 const methodOverride = require('method-override'); //method overried to allow for put and delete
 
+// const verify
+
 module.exports = (knex) => {
   // Andrew - All routes will be prepended with /user ex. /user/menu
   // Andrew - GET request to query db and return all products and render them in menu formn
@@ -26,7 +28,6 @@ module.exports = (knex) => {
   // products_menu table.
   router.post('/order', (req, res) => {
     // const userID        = req.session.user_id
-    debugger;
     const userID        = 1;
     const total         = req.body.total_price;
     const itemID1       = req.body.item_1
@@ -39,9 +40,8 @@ module.exports = (knex) => {
     const itemQuantity4 = req.body.item_4_quantity
     const itemID5       = req.body.item_5
     const itemQuantity5 = req.body.item_5_quantity
+    let order_id = ''
 
-    let products = JSON.parse(localStorage.cart)
-    console.log();
     const orderItems = [
       {
         item_id  : itemID1,
@@ -62,6 +62,7 @@ module.exports = (knex) => {
     ];
     async.waterfall([
       (callback) => {
+        // Andrew - Inserts data into orders table and returns the order_id
         return knex('orders')
           .returning('id')
           .insert([{user_id: userID, total_price: total}])
@@ -69,20 +70,22 @@ module.exports = (knex) => {
           .catch(callback)
       },
       (data, callback) => {
-        const order_id = data[0]
+        // Andrew - Sets the orderID, which gets called on redirect in the url. Order_id is added to
+        // each item before insertion into product_order table.
+        order_id = data[0]
         orderItems.map((orderItems) => {
           orderItems['order_id'] = order_id
         })
         return knex.batchInsert('product_orders', orderItems)
           .then(response => callback(null, "done"))
-          .catch(callback)
+          .catch(callback);
       },
     ], (err, result) => {
       if(err){
         return console.log(`There was an error during database insertion of order. Error: ${err}`);
       } else {
-        console.log('Successfull order submission!');
-        res.redirect('/user/:orderID');
+        console.log(`Successfull order submission! The order_id is: ${order_id}`);
+        res.redirect(`/user/${order_id}`);
       }
     });
   });
@@ -98,19 +101,7 @@ module.exports = (knex) => {
         console.log('Database query to cart failed. Error: ', err);
       })
   })
-  // Andrew - Post for when user add item to cart
-  router.post('/cart', (req, res) => {
-
-  });
-  // Andrew - Update item quantity in cart
-  router.put('/cart/:itemID', (req, res) => {
-
-  });
-  // Andrew - Delete item from cart
-  router.delete('/cart/:itemID', (req, res) => {
-
-  });
-  // render specific order
+  // Andrew - render specific order
   router.get('/:orderID', (req, res) => {
     const orderID = req.params.orderID
     if (!req.session.user_id || !orderID) {
