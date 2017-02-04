@@ -7,7 +7,7 @@ const createCartItem = (cartItem) => {
   const $item = $(`
     <div class="row">
       <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
-        <img class="img-responsive" src="http://placehold.it/120x80">
+        <img class="img-responsive" src="${cartItem.image_url}">
       </div>
       <div class="col-lg-7 col-md-6 col-sm-8 col-xs-12">
         <ul class="item-info">

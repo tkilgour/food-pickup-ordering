@@ -14,7 +14,7 @@ const setCart = (cart) => {
   localStorage.setItem('cart', JSON.stringify(cart));
 }
 // Andrew - Adds items to cart/localStorage. Updates quantity if item is already in cart.
-const addItem = (id, name, image_url, price) => {
+const addItem = (id, name, price, img) => {
   let cart = getCart();
   let matchingProduct = cart.products.findIndex((product) => {
     return product.item_id === id;
@@ -24,7 +24,7 @@ const addItem = (id, name, image_url, price) => {
     product.item_id = id;
     product.name = name;
     product.price = price;
-    product.image_url = image_url;
+    product.image_url = img;
     product.quantity = 1;
     cart.products.push(product)
   } else {
