@@ -1,4 +1,4 @@
-const roundMoney = (number) => {
+  const roundMoney = (number) => {
   number = (Math.round(number * 100) / 100);
   return number;
 }
@@ -18,11 +18,11 @@ const createCartItem = (cartItem) => {
       <div class="col-lg-2 col-md-2 col-sm-10 col-xs-2">
         <ul class="adjust-item">
           <li>
-            <input type="number" class="form-control text-center" value="${cartItem.quantity}">
+            <input id="edit-item-quantity" data-id="${cartItem.item_id}" type="number" class="form-control text-center" value="${cartItem.quantity}"></input>
           </li>
           <li>
             <form method="DELETE" action="/order/***ORDER ID">                  <!-- add order id variable -->
-              <input type="button" class="delete-item" value="Remove"></input>
+              <input type="button" class="delete-item" value="Remove" data-id="${cartItem.id}"></input>
             </form>
           </li>
         </ul>
