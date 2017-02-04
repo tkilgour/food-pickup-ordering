@@ -1,0 +1,29 @@
+const data = {
+  products: [
+    {
+      item_id: 1,
+      name: "something",
+      quantity: 10
+    },
+    {
+      item_id: 2,
+      name: "something",
+      quantity: 7
+    },
+    {
+      item_id: 3,
+      name: "something",
+      quantity: 4
+    }
+  ]
+}
+
+console.log(data);
+
+data.products.forEach((product) => {
+  if (product.item_id === 1) {
+    product.quantity = 0;
+  }
+})
+
+console.log(data);

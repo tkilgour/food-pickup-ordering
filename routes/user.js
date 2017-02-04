@@ -26,6 +26,7 @@ module.exports = (knex) => {
   // products_menu table.
   router.post('/order', (req, res) => {
     // const userID        = req.session.user_id
+    debugger;
     const userID        = 1;
     const total         = req.body.total_price;
     const itemID1       = req.body.item_1
@@ -38,8 +39,9 @@ module.exports = (knex) => {
     const itemQuantity4 = req.body.item_4_quantity
     const itemID5       = req.body.item_5
     const itemQuantity5 = req.body.item_5_quantity
-    const itemID6       = req.body.item_6
-    const itemQuantity6 = req.body.item_6_quantity
+
+    let products = JSON.parse(localStorage.cart)
+    console.log();
     const orderItems = [
       {
         item_id  : itemID1,
@@ -56,9 +58,6 @@ module.exports = (knex) => {
       }, {
         item_id  : itemID5,
         quantity : itemQuantity5
-      }, {
-        item_id  : itemID6,
-        quantity : itemQuantity6
       }
     ];
     async.waterfall([
@@ -91,18 +90,6 @@ module.exports = (knex) => {
   router.get('/cart', (req, res) => {
     res.render('cart')
   })
-  // Andrew - Post for when user add item to cart
-  router.post('/cart', (req, res) => {
-
-  })
-  // Andrew - Update item quantity in cart
-  router.put('/cart/:itemID', (req, res) => {
-
-  });
-  // Andrew - Delete item from cart
-  router.delete('/cart/:itemID', (req, res) => {
-
-  });
   // render specific order
   router.get('/:orderID', (req, res) => {
     const orderID = req.params.orderID
