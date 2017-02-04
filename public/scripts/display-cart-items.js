@@ -1,13 +1,14 @@
-const roundMoney = (number) => {
+  const roundMoney = (number) => {
   number = (Math.round(number * 100) / 100);
   return number;
 }
+let subTotal = 0;
 
 const createCartItem = (cartItem) => {
   const $item = $(`
-    <div class="row">
+    <div class="row" id="cart-item">
       <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
-        <img class="img-responsive" src="http://placehold.it/120x80">
+        <img class="img-responsive" src="${cartItem.image_url}">
       </div>
       <div class="col-lg-7 col-md-6 col-sm-8 col-xs-12">
         <ul class="item-info">
@@ -18,11 +19,11 @@ const createCartItem = (cartItem) => {
       <div class="col-lg-2 col-md-2 col-sm-10 col-xs-2">
         <ul class="adjust-item">
           <li>
-            <input type="number" class="form-control text-center" value="${cartItem.quantity}">
+            <input id="edit-item-quantity" data-id="${cartItem.item_id}" type="number" class="form-control text-center" value="${cartItem.quantity}"></input>
           </li>
           <li>
             <form method="DELETE" action="/order/***ORDER ID">                  <!-- add order id variable -->
-              <input type="button" class="delete-item" value="Remove"></input>
+              <input type="button" class="delete-item" value="Remove" data-id="${cartItem.item_id}"></input>
             </form>
           </li>
         </ul>
@@ -47,7 +48,6 @@ $(() => {
     $('#checkout').attr('class', 'checkout-hidden')
   } else {
     const cartItems = JSON.parse(localStorage.getItem('cart')).products;
-    let subTotal = 0;
 
     for (item in cartItems) {
       $('.order').append(createCartItem(cartItems[item]));
@@ -61,14 +61,11 @@ $(() => {
     $('.order').append(`
       <div class="row">
       <div class="col-12 text-right">
-      <p>Subtotal $${subTotal}</p>
+      <p>Subtotal $${roundMoney(subTotal).toFixed(2)}</p>
       <p>Tax $${roundMoney(tax).toFixed(2)}</p>
       <p>Total $${roundMoney(total).toFixed(2)}</p>
       </div>
       </div>
       `);
-
   }
-
-
 });
