@@ -5,7 +5,7 @@
 
 const createCartItem = (cartItem) => {
   const $item = $(`
-    <div class="row">
+    <div class="row" id="cart-item">
       <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
         <img class="img-responsive" src="http://placehold.it/120x80">
       </div>
@@ -22,7 +22,7 @@ const createCartItem = (cartItem) => {
           </li>
           <li>
             <form method="DELETE" action="/order/***ORDER ID">                  <!-- add order id variable -->
-              <input type="button" class="delete-item" value="Remove" data-id="${cartItem.id}"></input>
+              <input type="button" class="delete-item" value="Remove" data-id="${cartItem.item_id}"></input>
             </form>
           </li>
         </ul>
