@@ -123,24 +123,28 @@ exports.seed = function(knex, Promise) {
       return knex('product_orders').insert({
         order_id: getOId(15.93),
         item_id: getPId('La Mancha'),
+        user_id: getUId('J%'),
         quantity: 3,
       });
   }).then(function() {
       return knex('product_orders').insert({
         order_id: getOId(15.93),
         item_id: getPId('C3'),
+        user_id: getUId('J%'),
         quantity: 4,
       });
   }).then(function() {
       return knex('product_orders').insert({
         order_id: getOId(8.47),
         item_id: getPId('Chocolate Cupcake'),
+        user_id: getUId('L%'),
         quantity: 2,
       });
   }).then(function() {
       return knex('product_orders').insert({
         order_id: getOId(8.47),
         item_id: getPId('Raspberry Tart'),
+        user_id: getUId('L%'),
         quantity: 1,
       });
   });
