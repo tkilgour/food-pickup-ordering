@@ -1,5 +1,10 @@
 <link rel="stylesheet" href="/styles/footer.css">
+<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+
 
 <div id="footer">
-  <span class="total">Total: $12.94</span>
+  <form method="POST" action="/order" id="checkout">
+    <input type="submit" class="checkout" class="btn btn-primary btn-lg" value="Checkout"></input>
+  </form>
+  <span class="total">  <i class="fa fa-shopping-cart" aria-hidden="true"></i> Total: $12.94</span>
 </div>

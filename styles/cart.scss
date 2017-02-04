@@ -77,20 +77,4 @@ body {
     text-decoration: none;
   }
 
-  .checkout {
-    float: right;
-    border-radius: 5px;
-    font-size: large;
-    background-color: #6F90A2;
-    color: white;
-    padding: 0 15px;
-    }
-
-  .checkout:hover {
-    background-color: #477187;
-  }
-
-  .checkout-hidden {
-    visibility: hidden;
-  }
 }
