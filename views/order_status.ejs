@@ -35,16 +35,16 @@
             <td class="right"><%= locals.userOrders[i].first_name %> <%= locals.userOrders[i].last_name %></td>
           </tr>
           <% for (let j = 0; j < locals.prodOrders.length; j++) { %>
-            <% if (locals.userOrders[i].id = locals.prodOrders[j].id) { %>
+            <% if (locals.userOrders[i].id === locals.prodOrders[j].id) { %>
           <tr>
-            <td><%= locals.prodOrders[i].quantity %> <%= locals.prodOrders[i].name %></td>
+            <td><%= locals.prodOrders[j].quantity %> <%= locals.prodOrders[j].name %></td>
             <td class="right"><%= locals.prodOrders[j].price %></td>
           </tr>
             <% } %>
           <% } %>
           <tr>
             <td>Total Price</td>
-            <td class="right"><%= locals.prodOrders[j].total_price %><td>
+            <td class="right"><%= locals.userOrders[i].total_price %><td>
           </tr>
         </table>
       </div>
@@ -63,7 +63,7 @@
       </div>
     </div>
   </div>
-  <% }; %>
+  <% } %>
 
   <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
