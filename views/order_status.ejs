@@ -17,6 +17,7 @@
       </div>
     </div>
   </div>
+  <% for (let i = 0; i < locals.userOrders.length; i++) { %>
   <div class="container-fluid sub-table">
     <div class="row">
       <div class="col-12">
@@ -27,23 +28,23 @@
           </tr>
           <tr>
             <td>ID</td>
-            <td class="right">23</td>
+            <td class="right"><%= locals.userOrders[i].id %></td>
           </tr>
           <tr>
             <td>Prepared For</td>
-            <td class="right">James Bond</td>
+            <td class="right"><%= locals.userOrders[i].first_name %> <%= locals.userOrders[i].last_name %></td>
           </tr>
+          <% for (let j = 0; j < locals.prodOrders.length; j++) { %>
+            <% if (locals.userOrders[i].id = locals.prodOrders[j].id) { %>
           <tr>
-            <td>3 - Chocolate Cupcake</td>
-            <td class="right">$2.99</td>
+            <td><%= locals.prodOrders[i].quantity %> <%= locals.prodOrders[i].name %></td>
+            <td class="right"><%= locals.prodOrders[j].price %></td>
           </tr>
-          <tr>
-            <td>2 - Vanilla Cupcake</td>
-            <td class="right">$1.99</td>
-          </tr>
+            <% } %>
+          <% } %>
           <tr>
             <td>Total Price</td>
-            <td class="right">$19.99<td>
+            <td class="right"><%= locals.prodOrders[j].total_price %><td>
           </tr>
         </table>
       </div>
@@ -62,6 +63,7 @@
       </div>
     </div>
   </div>
+  <% }; %>
 
   <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
