@@ -2,6 +2,7 @@ const roundMoney = (number) => {
   number = (Math.round(number * 100) / 100);
   return number;
 }
+let subTotal = 0;
 
 const createCartItem = (cartItem) => {
   const $item = $(`
@@ -47,7 +48,6 @@ $(() => {
     $('#checkout').attr('class', 'checkout-hidden')
   } else {
     const cartItems = JSON.parse(localStorage.getItem('cart')).products;
-    let subTotal = 0;
 
     for (item in cartItems) {
       $('.order').append(createCartItem(cartItems[item]));
@@ -61,14 +61,11 @@ $(() => {
     $('.order').append(`
       <div class="row">
       <div class="col-12 text-right">
-      <p>Subtotal $${subTotal}</p>
+      <p>Subtotal $${roundMoney(subTotal).toFixed(2)}</p>
       <p>Tax $${roundMoney(tax).toFixed(2)}</p>
       <p>Total $${roundMoney(total).toFixed(2)}</p>
       </div>
       </div>
       `);
-
-  }
-
-
+    }
 });

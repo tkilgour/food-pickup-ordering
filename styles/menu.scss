@@ -1,29 +1,6 @@
 body {
   padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 
-  #cart-button {
-    width: initial;
-    position: fixed;
-    right: 30px;
-    top: 100px;
-    background-color: #6F90A2;
-    box-shadow: 3px 3px 8px #666666;
-    z-index: 1;
-    border-radius: 100px;
-    padding: 25px;
-  }
-  .fa-shopping-cart {
-    position: fixed;
-    right: 40px;
-    top: 118px;
-    color: white;
-    font-size: large;
-    z-index: 1;
-  }
-
-  .cart-hidden {
-    visibility: hidden;
-  }
 }
 
 
