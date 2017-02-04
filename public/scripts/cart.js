@@ -32,7 +32,3 @@ const addItem = (id, name, price, img) => {
   }
   setCart(cart)
 }
-
-
-
-// let products = JSON.parse(localStorage.cart)
