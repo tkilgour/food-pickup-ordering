@@ -1,5 +1,6 @@
 node_modules/
 public/styles
+Notes/
 .env
 *.log
 *.sqlite3
