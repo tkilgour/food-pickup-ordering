@@ -51,7 +51,6 @@ $(() => {
 
     for (item in cartItems) {
       $('.order').append(createCartItem(cartItems[item]));
-      // console.log(cartItems[item].price);
       subTotal += roundMoney(cartItems[item].price * cartItems[item].quantity);
     }
 
@@ -67,5 +66,10 @@ $(() => {
       </div>
       </div>
       `);
+
+    $('.delete-item').on('click', () => {
+
+
+    });
   }
 });
