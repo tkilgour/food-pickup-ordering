@@ -1,3 +1,5 @@
+// Andrew - This adds item to cart 
+// Andrew - ES6 way of writing $(document)...
 $(() => {
   $('#shopping-cart').text(' 0')
   const cart = {}
