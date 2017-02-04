@@ -21,7 +21,7 @@
 
       <% locals.products.forEach((product) => {%>
         <div class="col-lg-4 col-md-6 col-sm-12 item">
-          <div class="top-item" id="item-details" data-id="<%= product.id %>" data-name="<%= product.name %>" data-price="<%= product.price %>">
+          <div class="top-item" id="item-details" data-id="<%= product.id %>" data-name="<%= product.name %>" data-price="<%= product.price %>" data-img="<%= product.image_url %>">
             <p>$<%= product['price'] %></p>
             <button class="add-item" type="button" class="btn btn-default btn-md">Add to Cart</button>
           </div>
