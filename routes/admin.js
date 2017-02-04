@@ -11,6 +11,7 @@ module.exports = (knex) => {
 
   router.get('/order_status', (req, res) => {
 
+
     res.render('order_status');
 
   })
