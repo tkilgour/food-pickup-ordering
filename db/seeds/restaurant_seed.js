@@ -56,7 +56,7 @@ exports.seed = function(knex, Promise) {
             }).then(function() {
                 return knex('products').insert({
                   restaurant_id: getId(),
-                  name: 'chocolate Cupcake',
+                  name: 'Chocolate Cupcake',
                   description: ' Moist chocolate cake topped with rich chocolate icing and confetti sprinkles.',
                   price: 2.99,
                   image_url: 'https://static1.squarespace.com/static/517aaf16e4b0b2e0f183a30f/t/55ce6876e4b0983379371099/14395900525486/'
