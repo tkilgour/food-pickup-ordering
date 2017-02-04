@@ -2,13 +2,21 @@ body {
   padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 
   .order{
-    background-color: #eee;
     margin-top: 50px;
-    padding-top: 10px;
+    padding: 10px 0;
+    background-color: #eee;
 
 
     .title {
       font-size: large;
+      padding-bottom: 10px;
+    }
+
+    .eta {
+      padding-bottom: 10px;
+    }
+
+    .order-id {
       padding-bottom: 10px;
     }
   }
