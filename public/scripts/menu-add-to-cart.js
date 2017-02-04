@@ -14,7 +14,6 @@ $(() => {
     cartItemCount += 1
 
     $('#shopping-cart').text(' ' + cartItemCount)
-    console.log(item.data('name'));
-    addItem(item.data('id'), item.data('name'), item.data('image-url'), item.data('price'))
+    addItem(item.data('id'), item.data('name'), item.data('price'), item.data('image-url'))
   })
 });
