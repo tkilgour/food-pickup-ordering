@@ -37,14 +37,14 @@
           <% for (let j = 0; j < locals.prodOrders.length; j++) { %>
             <% if (locals.userOrders[i].id === locals.prodOrders[j].id) { %>
           <tr>
-            <td><%= locals.prodOrders[j].quantity %> <%= locals.prodOrders[j].name %></td>
-            <td class="right"><%= locals.prodOrders[j].price %></td>
+            <td><%= locals.prodOrders[j].quantity %>  of <%= locals.prodOrders[j].name %></td>
+            <td class="right">$<%= locals.prodOrders[j].price %> ea.</td>
           </tr>
             <% } %>
           <% } %>
           <tr>
-            <td>Total Price</td>
-            <td class="right"><%= locals.userOrders[i].total_price %><td>
+            <td class="sub-table-total">Total Price</td>
+            <td class="sub-table-total right">$<%= locals.userOrders[i].total_price %><td>
           </tr>
         </table>
       </div>
