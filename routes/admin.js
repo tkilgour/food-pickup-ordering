@@ -13,17 +13,17 @@ module.exports = (knex) => {
     const locals = {};
     return knex('orders')
       .innerJoin('users', 'orders.user_id', 'users.id')
-      .select('orders.id', 'users.first_name', 'users.last_name')
+      .select('orders.id', 'users.first_name', 'users.last_name', 'orders.total_price')
       .where('orders.complete', '=', true)
       .then(function(result) {
         locals.userOrders = result;
-        //console.log(locals.userInfo);
+        //console.log(locals);
         //res.render('order_status', locals);
       }).then(function() {
           return knex('product_orders')
             .innerJoin('orders', 'product_orders.order_id', 'orders.id')
             .innerJoin('products', 'product_orders.item_id', 'products.id')
-            .select('orders.id', 'products.name', 'products.price', 'orders.total_price', 'product_orders.quantity')
+            .select('orders.id', 'products.name', 'products.price', 'product_orders.quantity')
             .where('orders.complete', '=', true)
             .then(function(result) {
               locals.prodOrders = result;
