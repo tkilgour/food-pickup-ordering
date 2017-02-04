@@ -17,24 +17,46 @@
       </div>
     </div>
   </div>
-  <div class="container-fluid sub-title">
+  <div class="container-fluid sub-table">
     <div class="row">
-      <div class="col-xs-12 col-sm-6 col-md-6">
-        <span class="sub-title-order-details">Order Details</span><br/>
-        <span>ID: 23</span><br/>
-        <span>Chocolate Cupcake: 3</span><br/>
-        <span>Vanilla Cupcake: 2</span><br/>
-        <span>Prepared for: James Bond</span><br/>
-        <span>Total Price: $19.99</span>
+      <div class="col-12">
+        <table class="table">
+          <tr>
+            <th>Order</th>
+            <th class="right">Details</th>
+          </tr>
+          <tr>
+            <td>ID</td>
+            <td class="right">23</td>
+          </tr>
+          <tr>
+            <td>Prepared For</td>
+            <td class="right">James Bond</td>
+          </tr>
+          <tr>
+            <td>3 - Chocolate Cupcake</td>
+            <td class="right">$2.99</td>
+          </tr>
+          <tr>
+            <td>2 - Vanilla Cupcake</td>
+            <td class="right">$1.99</td>
+          </tr>
+          <tr>
+            <td>Total Price</td>
+            <td class="right">$19.99<td>
+          </tr>
+        </table>
       </div>
-      <div class="col-xs-8 col-sm-6 col-md-6 text-right est-time">
-        <span class="sub-title-time">EST. Time</span><br/>
+    </div>
+    <div class="row">
+      <div class="col-12 text-left est-time">
+        <span class="sub-table-time">EST. Time</span><br/>
         <form action="" method="POST">
           <div class="input-group">
-           <input type="text" class="form-control">
            <span class="input-group-btn">
             <button class="btn btn-success" type="button">Go</button>
            </span>
+           <input type="text" placeholder="minutes" class="form-control">
          </div>
        </form>
       </div>

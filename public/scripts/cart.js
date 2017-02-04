@@ -24,7 +24,7 @@ const addItem = (id, name, price, img) => {
     product.item_id = id;
     product.name = name;
     product.price = price;
-    product.img = img;
+    product.image_url = img;
     product.quantity = 1;
     cart.products.push(product)
   } else {

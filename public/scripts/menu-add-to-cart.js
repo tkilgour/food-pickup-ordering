@@ -1,4 +1,4 @@
-// Andrew - This adds item to cart 
+// Andrew - This adds item to cart
 // Andrew - ES6 way of writing $(document)...
 $(() => {
   $('#shopping-cart').text(' 0')
@@ -14,6 +14,7 @@ $(() => {
     cartItemCount += 1
 
     $('#shopping-cart').text(' ' + cartItemCount)
-    addItem(item.data('id'), item.data('name'), item.data('price'))
+    console.log(item.data('name'));
+    addItem(item.data('id'), item.data('name'), item.data('image-url'), item.data('price'))
   })
 });

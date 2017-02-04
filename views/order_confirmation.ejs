@@ -3,14 +3,65 @@
   <head>
     <title>Order Confirmation</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles/order_confirmation.css">
+    <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
   <!-- Nav bar -->
   <% include ./partials/_navbar %>
 
-<div class="container md-">
+  <div class="container order">
+    <div class="row">
+      <div class="col-12 text-center title">
+        <h2>Hooray! <em>Carol's Cupcakes</em> are on their way!</h2>
+      </div>
+    </div>
 
-</div>
+    <div class="row">
+      <div class="col-12 text-center eta">
+        <h4><strong>27 minutes</strong> until you're order is ready.</h4>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 text-center order-id">
+        Order ID: 152098
+      </div>
+    </div>
+
+    <div class="row">
+
+    </div>
+
+    <div class="row">
+      <div class="col-6 text-right">
+        1 x Vanilla Cupcake
+      </div>
+      <div class="col-6 text-left">
+        $3.99
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6 text-right">
+        2 x Chocolate Cupcake
+      </div>
+      <div class="col-6 text-left">
+        $7.98
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-7"></div>
+      <div class="col-5 text-left">
+        <strong>Total $14.97</strong>
+      </div>
+    </div>
+
+
+  </div>
 
 
   <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
