@@ -74,6 +74,7 @@ body {
   }
   .back:hover {
     color: #111;
+    text-decoration: none;
   }
 
   .checkout {
@@ -87,5 +88,9 @@ body {
 
   .checkout:hover {
     background-color: #477187;
+  }
+
+  .checkout-hidden {
+    visibility: hidden;
   }
 }
