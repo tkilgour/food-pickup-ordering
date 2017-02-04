@@ -17,6 +17,8 @@ const knexLogger  = require('knex-logger');
 const handlebars  = require('handlebars');  // used for templating
 // Seperated Routes for each Resource
 const usersRoutes = require('../routes/user');
+const adminRoutes = require('../routes/admin');
+
 app.use(morgan('dev'));
 app.use(knexLogger(knex));
 app.set('view engine', 'ejs');
@@ -37,6 +39,8 @@ app.use('/styles', sass({
 app.use(express.static('public'));
 // Andrew - URL will be prepended with /user
 app.use('/user', usersRoutes(knex));
+//Par - admin routes prepended with /admin
+app.use('/admin', adminRoutes(knex));
 // Andrew - If no cookie user will have to login/register. If user logged in, redirect to
 // menu page to begin order. If restaurant logged in, redirect to admin page.
 app.get('/', (req, res) => {

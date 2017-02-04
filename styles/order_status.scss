@@ -10,7 +10,7 @@
 }
 
 @media (min-width: 576px) and (max-width: 768px) {
-  .sub-title {
+  .sub-table {
     margin: 0 7%;
 
     .est-time {
@@ -24,7 +24,7 @@
 }
 
 @media (min-width: 769px) and (max-width: 991px) {
-  .sub-title {
+  .sub-table {
     margin: 0 10%;
 
     .est-time {
@@ -38,28 +38,26 @@
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
-  .sub-title {
+  .sub-table {
     margin: 0 13%;
 
     .est-time {
 
       .input-group {
         width: 60%;
-        margin-left: 40%;
       }
     }
   }
 }
 
 @media (min-width: 1200px) {
-  .sub-title {
+  .sub-table {
     margin: 0 18%;
 
     .est-time {
 
       .input-group {
         width: 50%;
-        margin-left: 50%;
       }
     }
   }
@@ -72,20 +70,6 @@ body {
 
     .title {
       margin: 5% 0 3% 0;
-
-    }
-  }
-
-  .sub-title {
-
-    .sub-title-order-details {
-      font-weight: bold;
-
-    }
-
-    .sub-title-time {
-      font-weight: bold;
-
     }
   }
 }
