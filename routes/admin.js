@@ -4,14 +4,11 @@ const express        = require('express');
 const router         = express.Router();
 const async          = require('async');
 const methodOverride = require('method-override'); //method overried to allow for put and delete
-const twilio        = require('../server/twilio');
+const twilio         = require('../server/twilio');
 
 module.exports = (knex) => {
   //Par - all routes prepended with /admin
   //Par - get /order_status will render the order status page for the employee checking on new orders
-
-  const locals = {};
-
   router.get('/order_status', (req, res) => {
     const locals = {};
     return knex('orders')
@@ -37,17 +34,25 @@ module.exports = (knex) => {
     const oid = req.body.id;
     const time = req.body.val;
 
-    console.log(req.body, time);
-
     return knex('orders')
       .where('orders.id', '=', oid)
       .update({time: time})
       .then(function() {
-        twilio.message('Par', '1 cupcake', 'CUPCAKES!!!', 'http://www.cupcakes.com');
+        const sms = {};
+        return knex('orders')
+          .innerJoin('users', 'orders.user_id', 'users.id')
+          .select('users.first_name', 'orders.time')
+          .where('orders.id', '=', oid)
+          .then(function(result) {
+            sms.user = result;
+          }).then(function() {
+            //console.log(sms.prod);
+            twilio.message(sms.user[0].first_name, 'Carol\'s Cupcakes', sms.user[0].time, 'http://www.cupcakes.com');
+          });
       })
       .then(function() {
         res.redirect('order_status');
-      })
+      });
   });
   return router;
 }
