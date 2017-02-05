@@ -40,7 +40,26 @@ module.exports = (knex) => {
       .where('orders.id', '=', oid)
       .update({time: time})
       .then(function() {
-        twilio.message('Par', '1 cupcake', 'CUPCAKES!!!', 'http://www.cupcakes.com');
+        const sms = {};
+        return knex('orders')
+          .innerJoin('users', 'orders.user_id', 'users.id')
+          .select('users.first_name')
+          .where('orders.id', '=', oid)
+          .then(function(result) {
+            sms.user = result;
+          }).then(function() {
+              return knex('product_orders')
+                .innerJoin('orders', 'product_orders.order_id', 'orders.id')
+                .innerJoin('products', 'product_orders.item_id', 'products.id')
+                .select('product_orders.quantity', 'products.name', 'orders.time')
+                .where('orders.id', '=', oid)
+                .then(function(result) {
+                  sms.prod = result;
+                });
+          }).then(function() {
+            //console.log(sms.prod);
+            twilio.message(sms.user[0].first_name, 'Carol\'s Cupcakes', sms.prod[0].time, 'http://www.cupcakes.com');
+          });
       })
       .then(function() {
         res.redirect('order_status');
