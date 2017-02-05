@@ -5,10 +5,31 @@ const router         = express.Router();
 const async          = require('async');
 const methodOverride = require('method-override'); //method overried to allow for put and delete
 
-// const verify
+// Andrew - Takes in localStorage and creates and array with item_id and item_quantity
+const createOrder = (cart) => {
+  const order = []
+  cart.products.forEach((product) => {
+    order.push(
+      {
+        item_id: product.item_id,
+        quantity: product.quantity
+      }
+    )
+  })
+  return order;
+}
+// Andrew - Calculates total
+const calculateTotal = (cart) => {
+  let total = 0;
+  cart.products.forEach((product) => {
+    total += (product.price * product.quantity)
+  })
+  // Andrew - The total will not be rounded before database insertion
+  return total * 1.13;
+}
 
+// Andrew - All routes will be prepended with /user ex. /user/menu
 module.exports = (knex) => {
-  // Andrew - All routes will be prepended with /user ex. /user/menu
   // Andrew - GET request to query db and return all products and render them in menu formn
   router.get('/menu', (req, res) => {
     return knex('products')
@@ -17,7 +38,6 @@ module.exports = (knex) => {
         const locals = {
           products: allProducts
         };
-        console.log(locals.products);
         res.render('menu', locals);
       })
       .catch((err) => {
@@ -29,37 +49,10 @@ module.exports = (knex) => {
   router.post('/order', (req, res) => {
     // const userID        = req.session.user_id
     const userID        = 1;
-    const total         = req.body.total_price;
-    const itemID1       = req.body.item_1
-    const itemQuantity1 = req.body.item_1_quantity
-    const itemID2       = req.body.item_2
-    const itemQuantity2 = req.body.item_2_quantity
-    const itemID3       = req.body.item_3
-    const itemQuantity3 = req.body.item_3_quantity
-    const itemID4       = req.body.item_4
-    const itemQuantity4 = req.body.item_4_quantity
-    const itemID5       = req.body.item_5
-    const itemQuantity5 = req.body.item_5_quantity
-    let order_id = ''
-
-    const orderItems = [
-      {
-        item_id  : itemID1,
-        quantity : itemQuantity1
-      }, {
-        item_id  : itemID2,
-        quantity : itemQuantity2
-      }, {
-        item_id  : itemID3,
-        quantity : itemQuantity3
-      }, {
-        item_id  : itemID4,
-        quantity : itemQuantity4
-      }, {
-        item_id  : itemID5,
-        quantity : itemQuantity5
-      }
-    ];
+    const cart          = JSON.parse(req.body.cart)
+    const total         = calculateTotal(cart)
+    const orderItems    = createOrder(cart)
+    let order_id;
     async.waterfall([
       (callback) => {
         // Andrew - Inserts data into orders table and returns the order_id
@@ -93,7 +86,6 @@ module.exports = (knex) => {
   router.get('/cart', (req, res) => {
     res.render('cart')
   })
-
   // Andrew - render specific order
   router.get('/:orderID', (req, res) => {
     const orderID = req.params.orderID
