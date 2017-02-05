@@ -11,6 +11,8 @@
   <!-- Nav bar -->
   <% include ./partials/_navbar %>
 
+
+  <% console.log(locals) %>
   <div class="container order">
     <div class="row">
       <div class="col-12 text-center title">
@@ -26,7 +28,7 @@
 
     <div class="row">
       <div class="col-12 text-center order-id">
-        Order ID: 152098
+        Order ID: <%= locals.orderID %>
       </div>
     </div>
 
@@ -34,30 +36,27 @@
 
     </div>
 
-    <div class="row">
-      <div class="col-6 text-right">
-        1 x Vanilla Cupcake
-      </div>
-      <div class="col-6 text-left">
-        $3.99
-      </div>
-    </div>
-
+    <% let subTotal = 0 %>
+    <% locals.products.forEach((product) => {%>
     <div class="row">
       <div class="col-6 text-right">
-        2 x Chocolate Cupcake
+        <%= product.quantity %> x <%= product.name %>
       </div>
       <div class="col-6 text-left">
-        $7.98
+        $<%= product.price * product.quantity %>
       </div>
     </div>
+    <% subTotal += product.price * product.quantity %>
+    <% }); %>
 
 
-    <div class="row">
-      <div class="col-7"></div>
-      <div class="col-5 text-left">
-        <strong>Total $14.97</strong>
+    <div class="row totals">
+      <div class="col-10 text-right">
+        <p>Subtotal $<%= subTotal %><br>
+        Tax $<%= ((Math.round(subTotal * 13)) / 100).toFixed(2) %><br>
+        Total $<%= ((Math.round(subTotal * 113)) / 100).toFixed(2) %></p>
       </div>
+      <div class="col-2"></div>
     </div>
 
 
