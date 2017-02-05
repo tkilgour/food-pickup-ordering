@@ -60,9 +60,12 @@
         <form method="POST" action="/admin/order_status/" class="oid" id="<%= i %>" data-id="<%= locals.userOrders[i].id %>">
           <div class="input-group">
            <span class="input-group-btn">
-            <button class="btn btn-success" type="submit">Go!</button>
+            <button class="btn btn-success" name="go" type="submit">Go!</button>
            </span>
            <input type="text" placeholder="minutes" name="time" class="form-control txt-input">
+           <span class="input-group-btn">
+            <button class="btn btn-info" name="done" type="submit">Done!</button>
+           </span>
          </div>
        </form>
       </div>

@@ -21,6 +21,7 @@ $(document).ready(function () {
 
     let id = $(this).data('id');
     let val = Number($(this).find('.txt-input').val());
+    let done = false;
 
     const timeData = {
       id: id,
@@ -34,7 +35,8 @@ $(document).ready(function () {
 
     $.ajax('order_status', {
         method: 'post',
-        data: timeData
+        data: timeData,
+        done: done
     })
     .then(function() {
       $('.txt-input').val('');
