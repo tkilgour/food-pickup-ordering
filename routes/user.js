@@ -86,12 +86,36 @@ module.exports = (knex) => {
   router.get('/cart', (req, res) => {
     res.render('cart')
   })
+
+  const findItemID = (productList) => {
+    let productArray = []
+    productList.forEach((product) => {
+      arr.push(product.item_id)
+    })
+    console.log('THIS IS THE ARR', arr);
+    return productArray;
+  }
+
   // Andrew - render specific order
   router.get('/:orderID', (req, res) => {
     const orderID = req.params.orderID
-    if (!req.session.user_id || !orderID) {
-      res.status(401)
-    }
-  })
+    //Array that looks like this: [ { id: 8,
+    let products = [];
+    knex('orders')
+      .join('product_orders', "orders.id", "=", "product_orders.order_id")
+      .where("order_id", orderID)
+      .select()
+      .then((orderItemList) => {
+        const locals = {
+          products: orderItemList
+        }
+        res.render('order_confirmation', locals);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+  });
+
   return router;
 }

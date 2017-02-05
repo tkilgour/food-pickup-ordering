@@ -22,5 +22,6 @@ $(() => {
     }).done(() => {
       localStorage.clear()
     });
+    $.ajax({url: '/:orderID'})
   })
 });
