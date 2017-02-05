@@ -2,7 +2,7 @@
 exports.up = function(knex, Promise) {
   return knex.schema.table('orders', function(table) {
     table.integer('time');
-    table.date('date_created');
+    table.timestamp('date_created').notNullable().defaultTo(knex.raw('now()'));
     table.boolean('complete');
   });
 };
@@ -10,7 +10,7 @@ exports.up = function(knex, Promise) {
 exports.down = function(knex, Promise) {
   return knex.schema.table('orders', function(table) {
     table.dropColumn('time');
-    table.dropColumn('date_Created');
+    table.dropColumn('date_created');
     table.dropColumn('complete');
   });
 };
