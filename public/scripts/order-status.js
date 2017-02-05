@@ -18,7 +18,6 @@ $(document).ready(function () {
     })
     .then(function() {
       $('.txt-input').val('');
-      //$.ajax({url: '/admin/order_status'});
     })
     .fail(function(error) {
       //display any errors

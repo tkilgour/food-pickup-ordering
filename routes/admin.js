@@ -10,6 +10,8 @@ module.exports = (knex) => {
   //Par - all routes prepended with /admin
   //Par - get /order_status will render the order status page for the employee checking on new orders
 
+  const locals = {};
+
   router.get('/order_status', (req, res) => {
     const locals = {};
     return knex('orders')
@@ -32,12 +34,17 @@ module.exports = (knex) => {
   });
 
   router.post('/order_status', (req, res) => {
-    const time = req.body.id;
-    const oid = req.params.id;
+    const oid = req.body.id;
+    const time = req.body.val;
 
     console.log(req.body, time);
 
-    res.redirect('/admin/order_status');
+    return knex('orders')
+      .where('orders.id', '=', oid)
+      .update({time: time})
+      .then(function() {
+        res.redirect('order_status');
+      })
   });
   return router;
 }
