@@ -4,7 +4,7 @@ const express        = require('express');
 const router         = express.Router();
 const async          = require('async');
 const methodOverride = require('method-override'); //method overried to allow for put and delete
-
+const twilio        = require('/server/twilio');
 
 module.exports = (knex) => {
   //Par - all routes prepended with /admin
@@ -42,6 +42,9 @@ module.exports = (knex) => {
     return knex('orders')
       .where('orders.id', '=', oid)
       .update({time: time})
+      .then(function() {
+        twilio.message('Par', '1 cupcake', 'CUPCAKES!!!', 'http://www.cupcakes.com');
+      })
       .then(function() {
         res.redirect('order_status');
       })

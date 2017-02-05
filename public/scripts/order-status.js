@@ -1,5 +1,20 @@
+const twillio = require('/server/twillio');
+
 
 $(document).ready(function () {
+  let isEmpty = false;
+
+  $('.txt-input').on('input blur', function() {
+    let chars = $(this).val();
+
+    if (!chars.trim()) {
+      isEmpty = true;
+    } else {
+      isEmpty = false;
+    }
+  });
+
+
 
   $('.oid').on('submit', function(event) {
     event.preventDefault();
@@ -10,6 +25,11 @@ $(document).ready(function () {
     const timeData = {
       id: id,
       val: val
+    }
+
+    if (isEmpty) {
+      alert('Please enter time in minutes to continue.');
+      return;
     }
 
     $.ajax('order_status', {
