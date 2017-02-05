@@ -38,7 +38,7 @@ module.exports = (knex) => {
         const locals = {
           products: allProducts
         };
-        res.render('menu', locals);
+          res.render('menu', locals);
       })
       .catch((err) => {
         console.log("Knex query failed", err)
@@ -98,24 +98,24 @@ module.exports = (knex) => {
 
   // Andrew - render specific order
   router.get('/:orderID', (req, res) => {
-    const orderID = req.params.orderID
-    //Array that looks like this: [ { id: 8,
-    let products = [];
-    knex('orders')
-      .join('product_orders', "orders.id", "=", "product_orders.order_id")
-      .where("order_id", orderID)
-      .select()
-      .then((orderItemList) => {
+    const orderID = Number(req.params.orderID)
+
+    return knex.from('product_orders')
+      .innerJoin('orders', 'product_orders.order_id', 'orders.id')
+      .innerJoin('products', 'product_orders.item_id', 'products.id')
+      .select(orderID, 'products.name', 'products.price', 'product_orders.quantity', 'orders.time')
+      .where('order_id', '=', orderID)
+      .then((allProducts) => {
         const locals = {
-          products: orderItemList
-        }
-        res.render('order_confirmation', locals);
+          products: allProducts,
+          orderID: orderID
+        };
+          res.render('order_confirmation', locals);
       })
       .catch((err) => {
-        console.log(err);
-      });
-
-  });
-
+        console.log("Knex query failed", err)
+      })
+      res.render('order_confirmation', orderConfirm);
+  })
   return router;
 }

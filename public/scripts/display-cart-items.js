@@ -34,7 +34,7 @@ const createCartItem = (cartItem) => {
       <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
         <img class="img-responsive" src="${cartItem.image_url}">
       </div>
-      <div class="col-lg-7 col-md-6 col-sm-8 col-xs-12">
+      <div class="col-lg-6 col-md-5 col-sm-7 col-xs-12">
         <ul class="item-info">
           <li class="item-name">${cartItem.name}</li>
           <li class="item-price">$${cartItem.price}</li>
@@ -50,7 +50,7 @@ const createCartItem = (cartItem) => {
           </li>
         </ul>
       </div>
-      <div class="col-lg-1 col-md-1 col-sm-2 col-xs-2 text-right">
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-right">
         <span class="item-subtotal">$${roundMoney(cartItem.price * cartItem.quantity)}</span>
       </div>
     </div>
