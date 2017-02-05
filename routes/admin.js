@@ -5,6 +5,7 @@ const router         = express.Router();
 const async          = require('async');
 const methodOverride = require('method-override'); //method overried to allow for put and delete
 
+
 module.exports = (knex) => {
   //Par - all routes prepended with /admin
   //Par - get /order_status will render the order status page for the employee checking on new orders
@@ -31,7 +32,10 @@ module.exports = (knex) => {
   });
 
   router.post('/order_status', (req, res) => {
-    const time = req.body.time;
+    const time = req.body.id;
+    const oid = req.params.id;
+
+    console.log(req.body, time);
 
     res.redirect('/admin/order_status');
   });

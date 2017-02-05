@@ -6,6 +6,11 @@
     <link rel="stylesheet" href="/styles/order_status.css">
     <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/scripts/order-status.js"></script>
   </head>
   <body>
   <!-- Nav bar -->
@@ -52,21 +57,17 @@
     <div class="row">
       <div class="col-12 text-left est-time">
         <span class="sub-table-time">EST. Time</span><br/>
-        <form method="POST" action="/admin/order_status" id="oid" data-id="<%= locals.userOrders[i].id %>">
+        <form method="POST" action="/admin/order_status/" class="oid" id="<%= i %>" data-id="<%= locals.userOrders[i].id %>">
           <div class="input-group">
            <span class="input-group-btn">
             <button class="btn btn-success" type="submit">Go!</button>
            </span>
-           <input type="text" placeholder="minutes" name="time" class="form-control">
+           <input type="text" placeholder="minutes" name="time" class="form-control txt-input">
          </div>
        </form>
       </div>
     </div>
   </div>
   <% } %>
-
-  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
   </body>
 </html>
