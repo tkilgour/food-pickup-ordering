@@ -93,7 +93,7 @@ module.exports = (knex) => {
     return knex.from('product_orders')
       .innerJoin('orders', 'product_orders.order_id', 'orders.id')
       .innerJoin('products', 'product_orders.item_id', 'products.id')
-      .select(orderID, 'products.name', 'products.price', 'product_orders.quantity')
+      .select(orderID, 'products.name', 'products.price', 'product_orders.quantity', 'orders.time')
       .where('order_id', '=', orderID)
       .then((allProducts) => {
         const locals = {
