@@ -25,7 +25,7 @@ const calculateTotal = (cart) => {
     total += (product.price * product.quantity)
   })
   // Andrew - The total will not be rounded before database insertion
-  return total * 1.13, -2;
+  return total * 1.13;
 }
 
 // Andrew - All routes will be prepended with /user ex. /user/menu
@@ -86,7 +86,6 @@ module.exports = (knex) => {
   router.get('/cart', (req, res) => {
     res.render('cart')
   })
-
   // Andrew - render specific order
   router.get('/:orderID', (req, res) => {
     const orderID = req.params.orderID
