@@ -26,16 +26,16 @@ $(() => {
   }
 
   $('.add-item').on('click', () => {
-    // subTotal = 0;
-    // createSubtotal();
     $('#total').html('').append(roundMoney(createSubtotal() * 1.13).toFixed(2));
   });
 
   $('.delete-item').on('click', () => {
-    // subTotal = 0;
-    // createSubtotal();
     $('#total').html('').append(roundMoney(createSubtotal() * 1.13).toFixed(2));
-    // $('#total').html('');
   });
 
+  $('.edit-item-quantity').on('click', (e) => {
+    $(e.target).on('change', (e) => {
+      $('#total').html('').append(roundMoney(createSubtotal() * 1.13).toFixed(2));
+    })
+  })
 });
