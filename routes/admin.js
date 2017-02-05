@@ -17,8 +17,6 @@ module.exports = (knex) => {
       .where('orders.complete', '=', true)
       .then(function(result) {
         locals.userOrders = result;
-        //console.log(locals);
-        //res.render('order_status', locals);
       }).then(function() {
           return knex('product_orders')
             .innerJoin('orders', 'product_orders.order_id', 'orders.id')
@@ -27,10 +25,15 @@ module.exports = (knex) => {
             .where('orders.complete', '=', true)
             .then(function(result) {
               locals.prodOrders = result;
-              console.log(locals);
               res.render('order_status', locals);
             });
       });
+  });
+
+  router.post('/order_status', (req, res) => {
+    const time = req.body.time;
+
+    res.redirect('/admin/order_status');
   });
   return router;
 }
