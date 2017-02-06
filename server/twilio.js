@@ -18,6 +18,21 @@ const messageCustomer = (customer, restaurant, time, order_url) => {
   });
 }
 
+const messageComplete = (customer, restaurant, order_url) => {
+  const message = `Hello ${(customer)}, your order from ${restaurant} is now ready! You can verify at ${order_url}.`
+
+  client.messages.create({
+    to: "+14168849710",
+    from: "+16475030312",
+    body: message
+  }, (err, message) => {
+    if (err) {
+      // cb(err);
+      return null;
+    }
+  });
+}
+
 
 
 const callRestaurant = (customer, order, restaurant) => {
@@ -36,5 +51,6 @@ const callRestaurant = (customer, order, restaurant) => {
 
 module.exports = {
   message: messageCustomer,
+  complete: messageComplete,
   call: callRestaurant
 };

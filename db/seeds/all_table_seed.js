@@ -9,7 +9,7 @@ exports.seed = function(knex, Promise) {
   function getUId(char) {
     return knex('users')
       .select('id')
-      .where('first_name', 'like', char);
+      .where('first_name', '=', char);
   }
 
   function getOId(price) {
@@ -101,10 +101,16 @@ exports.seed = function(knex, Promise) {
         last_name: 'Skywalker',
         phone: '16475555555'
       });
+  }).then(function() {
+      return knex('users').insert({
+        first_name: 'Jacen',
+        last_name: 'Solo',
+        phone: '12895555555'
+      });
       //seed orders table
   }).then(function() {
       return knex('orders').insert({
-        user_id: getUId('J%'),
+        user_id: getUId('James'),
         total_price: 15.93,
         time: 20,
         date_created: '2017-02-03',
@@ -112,11 +118,19 @@ exports.seed = function(knex, Promise) {
       });
   }).then(function() {
       return knex('orders').insert({
-        user_id: getUId('L%'),
+        user_id: getUId('Luke'),
         total_price: 8.47,
         time: 20,
         date_created: '2017-02-02',
-        complete: true
+        complete: false
+      });
+  }).then(function() {
+      return knex('orders').insert({
+        user_id: getUId('Jacen'),
+        total_price: 14.93,
+        time: 20,
+        date_created: '2017-02-05',
+        complete: false
       });
       //seed product_orders table
   }).then(function() {
@@ -142,6 +156,18 @@ exports.seed = function(knex, Promise) {
         order_id: getOId(8.47),
         item_id: getPId('Raspberry Tart'),
         quantity: 1,
+      });
+  }).then(function() {
+      return knex('product_orders').insert({
+        order_id: getOId(14.93),
+        item_id: getPId('La Mancha'),
+        quantity: 5,
+      });
+  }).then(function() {
+      return knex('product_orders').insert({
+        order_id: getOId(14.93),
+        item_id: getPId('C3'),
+        quantity: 2,
       });
   });
 };

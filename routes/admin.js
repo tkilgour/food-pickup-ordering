@@ -14,7 +14,7 @@ module.exports = (knex) => {
     return knex('orders')
       .innerJoin('users', 'orders.user_id', 'users.id')
       .select('orders.id', 'users.first_name', 'users.last_name', 'orders.total_price')
-      .where('orders.complete', '=', true)
+      .where('orders.complete', '=', false)
       .then(function(result) {
         locals.userOrders = result;
       }).then(function() {
@@ -22,7 +22,7 @@ module.exports = (knex) => {
             .innerJoin('orders', 'product_orders.order_id', 'orders.id')
             .innerJoin('products', 'product_orders.item_id', 'products.id')
             .select('orders.id', 'products.name', 'products.price', 'product_orders.quantity')
-            .where('orders.complete', '=', true)
+            .where('orders.complete', '=', false)
             .then(function(result) {
               locals.prodOrders = result;
               res.render('order_status', locals);
@@ -30,9 +30,13 @@ module.exports = (knex) => {
       });
   });
 
-  router.post('/order_status', (req, res) => {
-    const oid = req.body.id;
-    const time = req.body.val;
+  router.post('/order_status/:id', (req, res) => {
+    const oid = req.params.id;
+    const time = req.body.time;
+
+    //const oid = req.body.id;
+    //const time = req.body.val;
+
 
     return knex('orders')
       .where('orders.id', '=', oid)
@@ -46,12 +50,38 @@ module.exports = (knex) => {
           .then(function(result) {
             sms.user = result;
           }).then(function() {
-            //console.log(sms.prod);
             twilio.message(sms.user[0].first_name, 'Carol\'s Cupcakes', sms.user[0].time, 'http://www.cupcakes.com');
           });
       })
       .then(function() {
-        res.redirect('order_status');
+        res.redirect('/admin/order_status');
+    });
+  });
+
+  router.post('/done/:id', (req, res) => {
+
+    const oid = req.params.id;
+    const done = true;
+    const notDone = false;
+
+    console.log(oid);
+
+    return knex('orders')
+        .where('orders.id', '=', oid)
+        .update({complete: true})
+        .then(function() {
+          const sms = {};
+          return knex('orders')
+          .innerJoin('users', 'orders.user_id', 'users.id')
+          .select('users.first_name')
+          .where('orders.id', '=', oid)
+          .then(function(result) {
+            sms.user = result;
+          }).then(function() {
+            twilio.complete(sms.user[0].first_name, 'Carol\'s Cupcakes', 'http://www.cupcakes.com');
+          }).then(function() {
+            res.redirect('/admin/order_status');
+          });
       });
   });
   return router;

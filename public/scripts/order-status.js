@@ -15,13 +15,12 @@ $(document).ready(function () {
   });
 
 
-
   $('.oid').on('submit', function(event) {
+    event.stopPropagation();
     event.preventDefault();
 
     let id = $(this).data('id');
     let val = Number($(this).find('.txt-input').val());
-    let done = false;
 
     const timeData = {
       id: id,
@@ -33,10 +32,9 @@ $(document).ready(function () {
       return;
     }
 
-    $.ajax('order_status', {
+    $.ajax('/admin/order_status', {
         method: 'post',
-        data: timeData,
-        done: done
+        data: timeData
     })
     .then(function() {
       $('.txt-input').val('');
@@ -44,6 +42,36 @@ $(document).ready(function () {
     .fail(function(error) {
       //display any errors
         console.error(error);
+    });
+    return;
+  });
+
+  $('.done').on('submit', function(event) {
+    event.stopPropagation();
+    event.preventDefault();
+
+
+    let id = $(this).data('id');
+    let done = true;
+    let notDone =false;
+
+    const status = {
+      id: id,
+      done: done,
+      notDone: notDone
+    }
+
+    $.ajax('/admin/done', {
+          method: 'post',
+          data: status
+      })
+      .then(function() {
+        $('.txt-input').val('');
+      })
+      .fail(function(error) {
+        //display any errors
+        console.error(error);
       });
+      return;
   });
 });
