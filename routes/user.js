@@ -38,7 +38,7 @@ module.exports = (knex) => {
         const locals = {
           products: allProducts
         };
-        res.render('menu', locals);
+          res.render('menu', locals);
       })
       .catch((err) => {
         console.log("Knex query failed", err)
@@ -88,10 +88,28 @@ module.exports = (knex) => {
   })
   // Andrew - render specific order
   router.get('/:orderID', (req, res) => {
-    const orderID = req.params.orderID
-    if (!req.session.user_id || !orderID) {
-      res.status(401)
-    }
+    const orderID = Number(req.params.orderID)
+
+    return knex.from('product_orders')
+      .innerJoin('orders', 'product_orders.order_id', 'orders.id')
+      .innerJoin('products', 'product_orders.item_id', 'products.id')
+      .select(orderID, 'products.name', 'products.price', 'product_orders.quantity', 'orders.time')
+      .where('order_id', '=', orderID)
+      .then((allProducts) => {
+        const locals = {
+          products: allProducts,
+          orderID: orderID
+        };
+          if (locals.products.length === 0) {
+            res.redirect('/user/menu');
+          } else {
+            res.render('order_confirmation', locals);
+          }
+      })
+      .catch((err) => {
+        console.log("Knex query failed", err)
+      })
+      res.render('order_confirmation', orderConfirm);
   })
   return router;
 }
