@@ -100,7 +100,11 @@ module.exports = (knex) => {
           products: allProducts,
           orderID: orderID
         };
-          res.render('order_confirmation', locals);
+          if (locals.products.length === 0) {
+            res.redirect('/user/menu');
+          } else {
+            res.render('order_confirmation', locals);
+          }
       })
       .catch((err) => {
         console.log("Knex query failed", err)
