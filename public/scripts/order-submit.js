@@ -1,4 +1,4 @@
-
+// ANdrew - On order submission, localStorage is sent as an object on post request to the server. 
 $(() => {
   $('#checkout').on('submit', (e) => {
     e.preventDefault()
@@ -9,7 +9,7 @@ $(() => {
         'cart': $cart
       },
       success:(data) => {
-        // $.get(data.url)
+        // Andrew - Takes the url from the data response from post request and renders user/:orderID
         window.location.replace(data.url)
         localStorage.clear()
       }
