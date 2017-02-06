@@ -9,7 +9,8 @@ $(() => {
         'cart': $cart
       },
       success:(data) => {
-        $.get(data.url)
+        // $.get(data.url)
+        window.location.replace(data.url)
         localStorage.clear()
       }
     })

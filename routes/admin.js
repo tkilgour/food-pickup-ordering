@@ -12,17 +12,17 @@ module.exports = (knex) => {
   router.get('/order_status', (req, res) => {
     const locals = {};
     return knex('orders')
-      .innerJoin('users', 'orders.user_id', 'users.id')
-      .select('orders.id', 'users.first_name', 'users.last_name', 'orders.total_price')
-      .where('orders.complete', '=', false)
+      .join('users', 'orders.user_id', 'users.id')
+      .select()
+      // .where('orders.complete', '=', false)
       .then(function(result) {
         locals.userOrders = result;
       }).then(function() {
           return knex('product_orders')
-            .innerJoin('orders', 'product_orders.order_id', 'orders.id')
-            .innerJoin('products', 'product_orders.item_id', 'products.id')
-            .select('orders.id', 'products.name', 'products.price', 'product_orders.quantity')
-            .where('orders.complete', '=', false)
+            .join('orders', 'product_orders.order_id', 'orders.id')
+            .join('products', 'product_orders.item_id', 'products.id')
+            .select()
+            // .where('orders.complete', '=', false)
             .then(function(result) {
               locals.prodOrders = result;
               res.render('order_status', locals);
@@ -50,7 +50,7 @@ module.exports = (knex) => {
           .then(function(result) {
             sms.user = result;
           }).then(function() {
-            twilio.message(sms.user[0].first_name, 'Carol\'s Cupcakes', sms.user[0].time, 'http://www.cupcakes.com');
+            twilio.message(sms.user[0].first_name, `The Sweets Life`, sms.user[0].time, `http://localhost:8080/user/${oid}`);
           });
       })
       .then(function() {
