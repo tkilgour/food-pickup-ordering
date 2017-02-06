@@ -7,7 +7,7 @@ const messageCustomer = (customer, restaurant, time, order_url) => {
   const message = `Hello ${(customer)}, your order from ${restaurant} should be ready in ${time} mins! You can check the ETA at ${order_url}.`
 
   client.messages.create({
-    to: "+14168849710",
+    to: "+16475506537",
     from: "+16475030312",
     body: message
   }, (err, message) => {
@@ -22,7 +22,7 @@ const messageComplete = (customer, restaurant, order_url) => {
   const message = `Hello ${(customer)}, your order from ${restaurant} is now ready! You can verify at ${order_url}.`
 
   client.messages.create({
-    to: "+14168849710",
+    to: "+16475506537",
     from: "+16475030312",
     body: message
   }, (err, message) => {
