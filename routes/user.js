@@ -3,6 +3,7 @@
 const express        = require('express');
 const router         = express.Router();
 const async          = require('async');
+const twilio         = require('../server/twilio');
 const methodOverride = require('method-override'); //method overried to allow for put and delete
 
 // Andrew - Takes in localStorage and creates and array with item_id and item_quantity
@@ -26,6 +27,20 @@ const calculateTotal = (cart) => {
   })
   // Andrew - The total will not be rounded before database insertion
   return total * 1.13;
+}
+// Andrew - Function to create message from order. String interpolates item name and quantity,
+// pluralizes the name if the quantity is greater than 1. Seperates items with commas and replaces
+// the last commas with 'and'
+const createOrderMessage = (order) => {
+  const messageArray = []
+  order.forEach((item) => {
+    if (item.quantity > 1) {
+      messageArray.push(`${item.quantity} ${item.name}s`)
+    } else {
+      messageArray.push(`${item.quantity} ${item.name}`)
+    }
+  })
+  return messageArray.join(', ').replace(/,(?=[^,]*$)/, ' and')
 }
 
 // Andrew - All routes will be prepended with /user ex. /user/menu
@@ -52,6 +67,7 @@ module.exports = (knex) => {
     const cart          = JSON.parse(req.body.cart)
     const total         = calculateTotal(cart)
     const orderItems    = createOrder(cart)
+    const message       = createOrderMessage(cart.products)
     let order_id;
     async.waterfall([
       (callback) => {
@@ -78,7 +94,8 @@ module.exports = (knex) => {
         return console.log(`There was an error during database insertion of order. Error: ${err}`);
       } else {
         console.log(`Successfull order submission! The order_id is: ${order_id}`);
-        res.redirect(`/user/${order_id}`);
+        twilio.call('James Bond', message, 'The Sweets Life' )
+        res.send(`/user/${order_id}`);
       }
     });
   });

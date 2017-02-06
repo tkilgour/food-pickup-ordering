@@ -23,7 +23,7 @@ const messageCustomer = (customer, restaurant, time, order_url) => {
 const callRestaurant = (customer, order, restaurant) => {
   client.calls.create({
     url: `https://handler.twilio.com/twiml/EHd82de43b7027cda1add178f95628fc42?restaurant=${encodeURI(restaurant)}&customer=${encodeURI(customer)}&order=${encodeURI(order)}`,
-    to: "+16475506537",
+    to: "+14168856638",
     from: "+16475030312"
   }, function(err, call) {
     if (err) {
