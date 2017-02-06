@@ -95,7 +95,7 @@ module.exports = (knex) => {
       } else {
         console.log(`Successfull order submission! The order_id is: ${order_id}`);
         twilio.call('James Bond', message, 'The Sweets Life' )
-        res.send(`/user/${order_id}`);
+        res.json({url: `/user/${order_id}`});
       }
     });
   });
@@ -103,16 +103,6 @@ module.exports = (knex) => {
   router.get('/cart', (req, res) => {
     res.render('cart')
   })
-
-  const findItemID = (productList) => {
-    let productArray = []
-    productList.forEach((product) => {
-      arr.push(product.item_id)
-    })
-    console.log('THIS IS THE ARR', arr);
-    return productArray;
-  }
-
   // Andrew - render specific order
   router.get('/:orderID', (req, res) => {
     const orderID = Number(req.params.orderID)
