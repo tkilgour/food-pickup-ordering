@@ -1,14 +1,3 @@
-const orderSubmit = (cart) => {
-  debugger;
-  $.post({
-    url: '/user/order',
-    data: {
-      cart: cart
-    }
-  }).done(() => {
-    localStorage.clear()
-  });
-}
 
 $(() => {
   $('#checkout').on('submit', (e) => {
@@ -17,10 +6,12 @@ $(() => {
     $.post({
       url: '/user/order',
       data: {
-        cart: $cart
+        'cart': $cart
+      },
+      success:(data) => {
+        $.get(data.url)
+        localStorage.clear()
       }
-    }).done(() => {
-      localStorage.clear()
-    });
+    })
   })
 });
