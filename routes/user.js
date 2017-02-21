@@ -4,7 +4,6 @@ const express        = require('express');
 const router         = express.Router();
 const async          = require('async');
 const twilio         = require('../server/twilio');
-const methodOverride = require('method-override'); //method overried to allow for put and delete
 
 // Andrew - Takes in localStorage and creates and array with item_id and item_quantity
 const createOrder = (cart) => {
@@ -15,17 +14,17 @@ const createOrder = (cart) => {
         item_id: product.item_id,
         quantity: product.quantity
       }
-    )
+    );
   })
   return order;
 }
-// Andrew - Calculates total
+// Andrew - Calculates total cost of each order
 const calculateTotal = (cart) => {
   let total = 0;
   cart.products.forEach((product) => {
     total += (product.price * product.quantity)
   })
-  // Andrew - The total will not be rounded before database insertion
+  // Andrew - Add tax to total. The total will not be rounded before database insertion
   return total * 1.13;
 }
 // Andrew - Function to create message from order. String interpolates item name and quantity,
@@ -42,7 +41,6 @@ const createOrderMessage = (order) => {
   })
   return messageArray.join(', ').replace(/,(?=[^,]*$)/, ' and')
 }
-
 // Andrew - All routes will be prepended with /user ex. /user/menu
 module.exports = (knex) => {
   // Andrew - GET request to query db and return all products and render them in menu formn
@@ -62,6 +60,7 @@ module.exports = (knex) => {
   // Andrew - Post request on order submission. Knex db insertion into orders table and
   // products_menu table.
   router.post('/order', (req, res) => {
+    // Andrew - Checks for userID in cookie/session if user validation can be implemented
     // const userID        = req.session.user_id
     const userID        = 1;
     const cart          = JSON.parse(req.body.cart)
@@ -85,6 +84,7 @@ module.exports = (knex) => {
         orderItems.map((orderItems) => {
           orderItems['order_id'] = order_id
         })
+        // Andrew - knex batch insert requires an array.
         return knex.batchInsert('product_orders', orderItems)
           .then(response => callback(null, "done"))
           .catch(callback);
@@ -106,7 +106,6 @@ module.exports = (knex) => {
   // Andrew - render specific order
   router.get('/:orderID', (req, res) => {
     const orderID = Number(req.params.orderID)
-
     return knex.from('product_orders')
       .innerJoin('orders', 'product_orders.order_id', 'orders.id')
       .innerJoin('products', 'product_orders.item_id', 'products.id')
