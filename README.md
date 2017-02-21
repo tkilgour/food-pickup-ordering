@@ -1,14 +1,15 @@
-# Node Skeleton
+# The Sweets Life
 
-## Project Setup
+A food ordering app that was built for a theoretical bakery as a midterm project at Lighthouse Labs with a small team. It allows the customer to place an order and then hear from the bakery when the order is being prepared.
 
-1. Create your own empty repo on GitHub
-2. Clone this repository (do not fork)
-  - Suggestion: When cloning, specify a different folder name that is relevant to your project
-3. Remove the git remote: `git remote rm origin`
-4. Add a remote for your origin: `git remote add origin <your github repo URL>`
-5. Push to the new origin: `git push -u origin master`
-6. Verify that the skeleton code now shows up in your repo on GitHub
+* Backend was built using Node.js, Express, and PostreSQL
+* Front-end was built with Bootstrap, Javascript, and HTML/CSS
+* The Twilio API was used to communicate with the customer and the bakery
+
+![](./assets/screenshot1.png)
+![](./assets/screenshot2.png)
+![](./assets/screenshot3.png)
+
 
 ## Getting Started
 

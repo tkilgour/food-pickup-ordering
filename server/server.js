@@ -45,7 +45,7 @@ app.use('/admin', adminRoutes(knex));
 // menu page to begin order. If restaurant logged in, redirect to admin page.
 app.get('/', (req, res) => {
   if (!req.session.user_id || !req.session.restaurant_id) {
-    res.status(200).render('index')
+    res.status(200).redirect('/user/menu')
   } else if (req.session.user_id && !req.sesssion.restaurant_id) {
     res.redirect('/user/menu')
   } else {
